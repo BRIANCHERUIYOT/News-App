@@ -1,0 +1,21 @@
+{% import 'macros.html' as macro%}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title> {{ title }}</title>
+        {% else %}
+        <title> Welcome to the best News Site</title>
+        {% endif %}
+    </head>
+    <body>
+ <!-- Popular movie section  -->
+ <h3> Top News</h3>
+ <ul>
+     
+    {{ macro.displaySourceList(technology)}}
+</ul>
+    </body>
+</html>
