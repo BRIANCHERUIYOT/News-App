@@ -1,15 +1,40 @@
-{% macro displaySourceList(source_list) %}
-{% for source_row in source_list | batch(4)%}
-<div class="row">
-	{% for sources in source_row %}
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">{{ sources.name}}</h5>
-            <p class="card-text">{{ sources.description}}</p>
-            <a href="/articles/{{sources.id}}" class="btn btn-primary">View {{ sources.name }} articles</a>
-        </div>
+{% macro displayNewsList(source_list) %}
+    {%for source in source_list %}
+    <div class="col-xs-12 col-sm-4 col-md-6 pt-3 mt-5">
+        <div class="card">
+            <h5 class="card-header   text-center text-danger">{{source.name}}</h5>
+            <div class="card-body-danger">
+              <p class="card-text">{{source.description|truncate(50)}}</p>
+            </div>
+                <a href="{{source.url}}" class="btn btn-sm btn-success" target="_blank">Visit {{source.name}}</a>
+          </div>
     </div>
-	{% endfor %}
-</div>
-{% endfor %}
-{% endmacro%}
+        {% endfor %}
+{% endmacro %}
+
+
+
+
+{% macro displayArticlesList(articles_list) %}
+    {%for article in articles_list%}
+<div class="row">
+    <div class="col-xs-12 col-sm-4 col-md-4 pt-5">
+      <div class="card">
+        <div class="card-body">
+            <h1 class="card-title text-auto text-danger text-center">{{article.title}}</h1>
+            <img src="{{article.urlToImage}}" class="card-img-top" alt="img">
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 pt-5">
+      <div class="card">
+        <div class="card-body">
+            <p>Date published:{{article.publishedAt}}</p>
+          <p class="card-text">{{article.description|truncate(50)}}</p>
+          <a href="{{article.url}}" class="btn btn-success" target="_blank">View Article</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% endmacro %}
